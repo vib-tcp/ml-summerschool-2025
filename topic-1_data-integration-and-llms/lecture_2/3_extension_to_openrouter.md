@@ -71,3 +71,11 @@ model_name = "deepseek/deepseek-r1-0528:free"
 llm = ChatOpenRouter(model_name=model_name)
 llm.invoke("What approved drugs can be used to treat melanoma?")
 ```
+
+## Exercise
+
+- Find free models on OpenRouter and try to compare them in quality and speed of response on a question of your choice;
+
+- Compare reasoning models with non-reasoning models on a question of your choice;
+
+- (Once you know how tool binding works, lecture 4) try to use tool binding with one of the free models on OpenRouter. Are you able to use the tool binding OpenRouter models?
