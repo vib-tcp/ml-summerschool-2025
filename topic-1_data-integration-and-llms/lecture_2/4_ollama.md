@@ -1,3 +1,12 @@
+# Deploying an LLM locally with Ollama
+
+## Table of Contents
+
+1. [Deploying an LLM locally with Ollama](#deploying-an-llm-locally-with-ollama)
+2. [Installing Ollama](#installing-ollama)
+3. [Using Ollama with LangChain](#using-ollama-with-langchain)
+4. [Exercise](#exercise)
+
 ## Deploying an LLM locally with Ollama
 
 **Ollama** is an **open-source tool** that lets you **run large language models (LLMs) locally** on your own computer—whether you’re using Windows, macOS, or Linux—without needing to rely on cloud-based services.

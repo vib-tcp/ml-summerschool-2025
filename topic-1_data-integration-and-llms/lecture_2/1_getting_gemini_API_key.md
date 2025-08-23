@@ -1,3 +1,11 @@
+# Getting Gemini API key
+
+## Table of Contents
+
+1. [Getting Gemini API key](#getting-gemini-api-key)
+2. [Verify that the API key is working](#verify-that-the-api-key-is-working)
+3. [Exercise](#exercise)
+
 ## Getting Gemini API key
 
 Google offer the possibility to use its Gemini models for free within a certain quota. To consult the quota see [here](https://ai.google.dev/gemini-api/docs/rate-limits).
