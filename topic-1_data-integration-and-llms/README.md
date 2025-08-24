@@ -107,6 +107,8 @@ The other lessons will be dynamically integrated into the workflow of approachin
 
 ### Lecture 5 (Agents)
 
+[Content](lecture_5)
+
 - A few words on agents
 - Brief introduction to the ReAct framework 
 - Brief introduction to langgraph
