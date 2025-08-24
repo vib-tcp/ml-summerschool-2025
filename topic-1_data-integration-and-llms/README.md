@@ -89,6 +89,8 @@ The other lessons will be dynamically integrated into the workflow of approachin
 
 ### Lecture 4 (Tool usage)
 
+[Content](lecture_4)
+
 - Some reference on tools (https://arxiv.org/pdf/2305.15334)
 - Simple example with the weather (the classical one)
 - Exposing a tool to the LLM from a conceptual point of view (docstring and signature)
