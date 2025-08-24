@@ -2,11 +2,9 @@
 
 ## Trainers
 
-Sebastian Lobentanzer
-Institute of Computational Biology, Helmholtz Center, Munich, DE
+Sebastian Lobentanzer, Institute of Computational Biology, Helmholtz Center, Munich, DE
 
-Francesco Carli
-EMBL-EBI & OpenTargets, UK
+Francesco Carli, EMBL-EBI & OpenTargets, UK
 
 ## Project overview
 
