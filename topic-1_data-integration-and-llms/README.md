@@ -37,6 +37,8 @@ The other lessons will be dynamically integrated into the workflow of approachin
 
 ### Lecture 1 ("theory")
 
+[Content](lecture_1)
+
 - Next token prediction
 - Pre-training
 - Instruction tuning (RLHF)
@@ -51,6 +53,8 @@ The other lessons will be dynamically integrated into the workflow of approachin
 - Some questions/suggestions to reflect on possible projects
 
 ### Lecture 2 (Inference)
+
+[Content](lecture_2)
 
 - Setting up together the environment with uv and the right libraries;
 - Getting a free API key for Gemini
@@ -72,6 +76,8 @@ The other lessons will be dynamically integrated into the workflow of approachin
 - Anatomy of a system prompt (the example of Biomni)
 
 ### Lecture 3 (Structured outputs)
+
+[Content](lecture_3)
 
 - Reflection on how classical code is structured
 - Have the model write an output in JSON format and write a dedicated parser to extract it
