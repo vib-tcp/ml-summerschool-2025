@@ -31,7 +31,11 @@ Then by clicking on the "Create API key" button you will be able to generate a n
 
 ![Create API key](docs_data/3_3_create_api_key.png)
 
-Once you have the API key you should add it to your environment variables (or equivalently in the `.env` file).
+Once you have the API key you should add it to your environment variables (or equivalently in the `.env` file) with the name `OPENROUTER_API_KEY`:
+
+```
+OPENROUTER_API_KEY=YOUR_API_KEY
+```
 
 ## Defining a OpenRouter conversation class in LangChain
 
