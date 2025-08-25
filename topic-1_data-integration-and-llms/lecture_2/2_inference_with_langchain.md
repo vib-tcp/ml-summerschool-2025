@@ -64,12 +64,14 @@ However, if we want to have a conversation with the model, we need to store the 
 To do this, we can gather the conversation history in a list and pass it to the model.
 
 ```python
+from langchain_core.messages import HumanMessage
+
 conversation_history = []
 
 response = llm.invoke("My name is John Doe")
 conversation_history.append(response)
-
-response = llm.invoke("What is my name?", conversation_history)
+conversation_history.append(HumanMessage("What is my name?"))
+response = llm.invoke(conversation_history)
 print(response)
 ```
 
