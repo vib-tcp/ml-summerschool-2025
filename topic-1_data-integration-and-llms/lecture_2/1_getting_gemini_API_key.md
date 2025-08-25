@@ -45,5 +45,5 @@ curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:g
 Create in the root of your project a new file called `.env` and add the following line:
 
 ```
-GEMINI_API_KEY=YOUR_API_KEY
+GOOGLE_API_KEY=YOUR_API_KEY
 ```
