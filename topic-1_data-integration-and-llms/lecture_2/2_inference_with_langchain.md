@@ -33,6 +33,16 @@ For more information, see the [official documentation](https://python.langchain.
 
 Let's start with a simple example of how to use LangChain to call a model. The `init_chat_model` function is used to initialize a chat model. The model is picked via the `model` and `model_provider` parameters. The `temperature` parameter is used to control the randomness of the model's output (0.0 is the most deterministic, 1.0 is the most random).
 
+> [!NOTE]
+> Not all dev enviromentes (depending on the editor or the current working directory) automatically load the environment variables. To make sure that the environment variables are loaded, you can use the `load_dotenv` function from the `dotenv` package.
+> 
+> ```python
+> from dotenv import load_dotenv
+> load_dotenv()
+> ```
+> By prepending these instructions to the code, you can make sure that the environment variables are loaded.
+> This however assumes that the `.env` file is in the current working directory. You can check the current working directory with the `os.getcwd()` function.
+
 ```python
 from langchain.chat_models import init_chat_model
 
@@ -64,12 +74,14 @@ However, if we want to have a conversation with the model, we need to store the 
 To do this, we can gather the conversation history in a list and pass it to the model.
 
 ```python
+from langchain_core.messages import HumanMessage
+
 conversation_history = []
 
 response = llm.invoke("My name is John Doe")
 conversation_history.append(response)
-
-response = llm.invoke("What is my name?", conversation_history)
+conversation_history.append(HumanMessage("What is my name?"))
+response = llm.invoke(conversation_history)
 print(response)
 ```
 
