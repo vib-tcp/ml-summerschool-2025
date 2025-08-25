@@ -33,6 +33,16 @@ For more information, see the [official documentation](https://python.langchain.
 
 Let's start with a simple example of how to use LangChain to call a model. The `init_chat_model` function is used to initialize a chat model. The model is picked via the `model` and `model_provider` parameters. The `temperature` parameter is used to control the randomness of the model's output (0.0 is the most deterministic, 1.0 is the most random).
 
+> [!NOTE]
+> Not all dev enviromentes (depending on the editor or the current working directory) automatically load the environment variables. To make sure that the environment variables are loaded, you can use the `load_dotenv` function from the `dotenv` package.
+> 
+> ```python
+> from dotenv import load_dotenv
+> load_dotenv()
+> ```
+> By prepending these instructions to the code, you can make sure that the environment variables are loaded.
+> This however assumes that the `.env` file is in the current working directory. You can check the current working directory with the `os.getcwd()` function.
+
 ```python
 from langchain.chat_models import init_chat_model
 
