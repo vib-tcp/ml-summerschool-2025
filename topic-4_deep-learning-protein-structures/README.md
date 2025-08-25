@@ -13,11 +13,11 @@ with the repository: https://github.com/vib-tcp/ml-summerschool-2025/
   2. JupyterNotebook version: 7.0.2 GCCCore 12.3.0
   3. Working directory: `/dodrio/scratch/projects/2024_301/Deep-Learning-Protein-Structure-Prediction`
   4. Custom code:
-     ```
-     module load PyTorch-Geometric/2.5.0-foss-2023a-PyTorch-2.1.2-CUDA-12.1.1 Transformers/4.39.3-gfbf-2023a PyTorch-Lightning/2.2.1-foss-2023a-CUDA-12.1.1
+```
+module load PyTorch-Geometric/2.5.0-foss-2023a-PyTorch-2.1.2-CUDA-12.1.1 Transformers/4.39.3-gfbf-2023a PyTorch-Lightning/2.2.1-foss-2023a-CUDA-12.1.1
 export PATH="/dodrio/scratch/projects/2024_301/Deep-Learning-Protein-Structure-Prediction/pip_dir/dodrio/scratch/users/vsc49670/.local/:$PATH"
 export PYTHONPATH=/dodrio/scratch/projects/2024_301/Deep-Learning-Protein-Structure-Prediction/pip_dir/dodrio/scratch/users/vsc49670/.local/lib/python3.11/site-packages/:$PYTHONPATH
-     ```
+```
   5. Reservation: vib_ml_summer_school_monday
   6. Launch
 3. Make a folder for yourself with your name, only use this folder for your code and notebooks.
