@@ -31,8 +31,9 @@ It is important to note how we defined the functions above. We added a docstring
 We can also define a function that takes as input a function and returns a descrpition of it (the docstring and its signature). This will be important in order to have the model understand how to use the tool.
 
 ```python
-from typing import Callable, List
+from typing import Callable, List, get_type_hints
 import inspect
+import json
 
 def describe_function(func: Callable) -> str:
     '''Describe a function'''
