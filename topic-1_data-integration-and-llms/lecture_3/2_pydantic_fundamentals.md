@@ -226,37 +226,34 @@ One of Pydantic's most helpful features is its ability to intelligently convert 
 Let's see how Pydantic handles common conversion scenarios:
 
 ```python
-from pydantic import BaseModel
-from typing import List
 from datetime import date
+from typing import Annotated
+
+from pydantic import BaseModel, BeforeValidator
+
+# Reusable type: "anything" -> str
+StrFromAny = Annotated[str, BeforeValidator(lambda v: str(v))]
 
 class SmartConverter(BaseModel):
-    # String conversions - numbers become text
-    user_id: str           # 12345 → "12345"
-    
-    # Numeric conversions - text becomes numbers (if possible)
-    age: int              # "25" → 25
-    score: float          # "87.5" → 87.5
-    
-    # Boolean conversions - various formats become True/False
-    is_verified: bool     # "true", "1", "yes", "on" → True
-    
-    # Date parsing - multiple formats accepted
-    birth_date: date      # "1995-06-15", "1995/06/15", "15-06-1995"
+    user_id: StrFromAny     # 12345 -> "12345"
+    age: int                # "25" -> 25
+    score: float            # "87.5" -> 87.5
+    is_verified: bool       # "true","1","yes","on" -> True
+    birth_date: date        # "2002-03-15" -> date(2002,3,15)
 
-# Real-world example: Data from a web form (often comes as strings)
 form_data = {
-    "user_id": 98765,              # Number, will become "98765"
-    "age": "22",                   # String, will become 22
-    "score": "94.7",               # String, will become 94.7
-    "is_verified": "true",         # String, will become True
-    "birth_date": "2002-03-15"     # String, will become date object
+    "user_id": 98765,
+    "age": "22",
+    "score": "94.7",
+    "is_verified": "true",
+    "birth_date": "2002-03-15",
 }
 
 user = SmartConverter(**form_data)
 print(f"User ID: {user.user_id} (type: {type(user.user_id).__name__})")
 print(f"Age: {user.age} (type: {type(user.age).__name__})")
 print(f"Verified: {user.is_verified} (type: {type(user.is_verified).__name__})")
+print(f"Birth date: {user.birth_date} (type: {type(user.birth_date).__name__})")
 ```
 
 #### Boolean Conversion Rules
@@ -264,11 +261,21 @@ print(f"Verified: {user.is_verified} (type: {type(user.is_verified).__name__})")
 Pydantic is quite flexible with boolean values, which is especially useful when working with different data sources:
 
 ```python
+from typing import Annotated
+from pydantic import BaseModel, BeforeValidator
+
+def to_bool(v):
+    if v == "":
+        return False
+    return v
+
+BoolFlex = Annotated[bool, BeforeValidator(to_bool)]
+
 class BooleanExamples(BaseModel):
-    setting1: bool
-    setting2: bool
-    setting3: bool
-    setting4: bool
+    setting1: BoolFlex
+    setting2: BoolFlex
+    setting3: BoolFlex
+    setting4: BoolFlex
 
 # All of these evaluate to True
 true_examples = BooleanExamples(
@@ -454,7 +461,7 @@ class ConstrainedPaper(BaseModel):
         ..., 
         description="Digital Object Identifier",
         example="10.1000/182",
-        regex=r"^10\.\d{4,}/.*"  # DOI format validation
+        pattern=r"^10\.\d{4,}/.*"  # DOI format validation
     )
 
 # Test constraints
@@ -506,6 +513,16 @@ class AdvancedPaper(BaseModel):
 Here's how field descriptions and default factories work in practice:
 
 ```python
+from typing import List
+from pydantic import BaseModel, Field
+
+class AdvancedPaper(BaseModel):
+    title: str = Field(..., description="Paper title")
+    email: str = Field(..., description="Corresponding author's email")
+    keywords: List[str] = Field(default_factory=list, description="Research keywords")
+    publication_year: int = Field(2024, description="Year of publication (default 2024)")
+    is_open_access: bool = Field(False, description="Open access flag (default False)")
+
 # Usage demonstrating defaults
 json_data = {
     "title": "My Research",
@@ -530,9 +547,9 @@ paper.keywords.append("deep learning")
 print(paper.keywords)   # ["machine learning", "AI", "neural networks", "deep learning"]
 print(paper2.keywords)  # [] (still empty - separate list)
 
-# Accessing field information (descriptions are available programmatically)
-print(AdvancedPaper.__fields__['title'].field_info.description)  # "Paper title"
-print(AdvancedPaper.__fields__['keywords'].field_info.description)  # "Research keywords"
+# Accessing field information (Pydantic v2: use model_fields and FieldInfo.description)
+print(AdvancedPaper.model_fields['title'].description)       # "Paper title"
+print(AdvancedPaper.model_fields['keywords'].description)    # "Research keywords"
 ```
 
 **Key Benefits Demonstrated:**
