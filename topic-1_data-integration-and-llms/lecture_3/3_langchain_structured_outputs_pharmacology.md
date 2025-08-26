@@ -162,3 +162,35 @@ parsing_llm = prompt | llm | parser
 result = parsing_llm.invoke({"text": drug_text})
 print(result)
 ```
+
+## Exercises
+
+### Exercise 1: Structured output for a dietary supplement
+Steps:
+- Define a new Pydantic model `Supplement` with fields like: `common_names: List[str]`, `active_components: List[str]`, `uses: List[str]`, `typical_adult_dose_mg: Optional[float]`, `forms: List[str]`.
+- Initialize a chat model.
+- Generate a short paragraph about a supplement (e.g., "vitamin D3" or "melatonin") covering the fields above.
+- Constrain the model with `with_structured_output(Supplement)` and parse the generated text.
+- Print and verify the parsed object (types and reasonable values).
+
+### Exercise 2: Union classification for route-specific therapies
+Steps:
+- Define two new Pydantic models:
+  - `TopicalTherapy` with fields like: `name: str`, `formulation: str` (e.g., cream, ointment), `site_of_application: str`.
+  - `InhaledTherapy` with fields like: `name: str`, `device_type: str` (e.g., HFA inhaler, DPI), `dose_mcg_per_puff: Optional[float]`.
+- Create a Union type `TherapyType = Union[TopicalTherapy, InhaledTherapy]`.
+- Prepare two short inputs:
+  - Topical example: "Miconazole 2% cream applied twice daily to affected area."
+  - Inhaled example: "Albuterol HFA inhaler 100 mcg per puff used for wheeze."
+- Use `with_structured_output(TherapyType)` to parse both inputs.
+- Print Python types and key fields to confirm correct branch selection.
+
+### Exercise 3: Nested model with basic validation (positive dose)
+Steps:
+- Define three new Pydantic models:
+  - `DosePlan` with fields: `route: str`, `dose_value: float`, `dose_unit: str` (e.g., mg, mL).
+  - `ManufacturerInfo` with fields: `name: str`, `country: Optional[str]`.
+  - `VaccineProfile` with fields: `name: str`, `indications: List[str]`, `schedule: DosePlan`, `manufacturer: ManufacturerInfo`.
+- Add a validator on `VaccineProfile` (or on `DosePlan`) to ensure `dose_value > 0`.
+- Initialize a chat model and generate a short paragraph about a vaccine (e.g., "Hepatitis B vaccine" or "Tdap") including name, indications, route, dose with unit, and manufacturer details.
+- Use `with_structured_output(VaccineProfile)` to parse the text and print the validated object.
