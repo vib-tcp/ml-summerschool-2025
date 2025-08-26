@@ -24,3 +24,4 @@ with the repository: <https://github.com/vib-tcp/ml-summerschool-2025/>
    - Launch
    - Make a folder for yourself with your name, only use this folder for your code and notebooks.
    - Make a new terminal, navigate to your folder, and do `cp -r /dodrio/scratch/projects/2024_301/Deep-Learning-Protein-Structure-Prediction/github/ml-summerschool-2025/topic-4_deep-learning-protein-structures/day_1/lightning_quickstart .`
+   - Inside the `lightning_quickstart` folder, do `pip install wandb` and `wandb login`
