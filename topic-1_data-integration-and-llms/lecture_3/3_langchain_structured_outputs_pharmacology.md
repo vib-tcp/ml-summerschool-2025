@@ -84,16 +84,30 @@ class InjectableMedication(BaseModel):
     concentration_mg_per_ml: Optional[float] = Field(None, description="Strength in mg/mL")
     route: str = Field(description="e.g., IV, IM, SC")
 
-MedicationType = Union[OralMedication, InjectableMedication]
+class MedicationWrapper(BaseModel):
+    oral: Optional[OralMedication] = None
+    injectable: Optional[InjectableMedication] = None
 
-flexible_llm = llm.with_structured_output(MedicationType)
+    def check_types(self):
+        "returns the type of the medication base on the non none field"
+        if self.oral is not None:
+            return "oral"
+        elif self.injectable is not None:
+            return "injectable"
+        else:
+            return None
+
+
+flexible_llm = llm.with_structured_output(MedicationWrapper)
 
 oral_text = "Paracetamol 500 mg tablet for pain and fever (oral)."
 inj_text = "Ondansetron injection 2 mg/mL, given IV for nausea."
 
 oral = flexible_llm.invoke(f"Extract: {oral_text}")
 inj = flexible_llm.invoke(f"Extract: {inj_text}")
-print(type(oral), type(inj))
+
+print(oral.check_types())
+print(inj.check_types())
 ```
 
 
