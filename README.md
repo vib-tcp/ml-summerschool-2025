@@ -5,3 +5,4 @@
 ## Projects
 
 - Topic 1: [Data integration and LLMs](topic-1_data-integration-and-llms)
+- Topic 2: [Protein Language Models](topic-2_protein-language-models)
