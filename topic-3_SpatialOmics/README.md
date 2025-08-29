@@ -1,4 +1,4 @@
-Connecting the SODA kernel to an Ondemand Jupyter Lab session.
+Connecting the SODA kernel to an VSC Tier1 Ondemand Jupyter Lab session.
 
 
 SSH to the node that your Code Server is running.   
